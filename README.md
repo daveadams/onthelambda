@@ -91,10 +91,10 @@ Now you are ready to configure your Lambda.
 
 All configuration is done with environment variables:
 
-    * `VAULT_ADDR` (Required) The URL of the Vault instance, eg `https://myvault.example.com`.
-    * `VAULT_AUTH_PROVIDER` (Required) The relative path of the AWS authentication provider, eg `lambda` for `auth/lambda` in the example above.
-    * `VAULT_AUTH_ROLE` (Required) The name of the Vault role to authenticate to, eg `my-vault-role` in the example above.
-    * `VAULT_AUTH_HEADER` (Optional, but recommended) The value of the `X-Vault-AWS-IAM-Server-ID` HTTP header to be included in the signed STS request this code uses to authenticate. This value is often set to the URL or DNS name of the Vault server to prevent potential replay attacks.
+* `VAULT_ADDR` (Required) The URL of the Vault instance, eg `https://myvault.example.com`.
+* `VAULT_AUTH_PROVIDER` (Required) The relative path of the AWS authentication provider, eg `lambda` for `auth/lambda` in the example above.
+* `VAULT_AUTH_ROLE` (Required) The name of the Vault role to authenticate to, eg `my-vault-role` in the example above.
+* `VAULT_AUTH_HEADER` (Optional, but recommended) The value of the `X-Vault-AWS-IAM-Server-ID` HTTP header to be included in the signed STS request this code uses to authenticate. This value is often set to the URL or DNS name of the Vault server to prevent potential replay attacks.
 
 That should be all that's required to get up and running.
 
