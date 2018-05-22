@@ -13,25 +13,18 @@ function to [Hashicorp Vault](https://www.vaultproject.io).
         "log"
     )
 
-    // perform authentication only once for each Lambda instance
-    func init() {
-        err := onthelambda.VaultAuth()
+    func MyLambdaHandler() {
+        client, err := onthelambda.VaultClient()
         if err != nil {
             log.Fatalf("ERROR: %s", err)
         }
-    }
 
-    // this handler will use the authentication context established in init()
-    // to read the `value` key of `secret/message` from Vault on each invocation
-    // (It's more efficient to read all necessary secrets into memory in init()
-    // but depending on your use case, this can also work.)
-    func LambdaHandler() {
-        resp, _ := onthelambda.VaultClient.Logical().Read("secret/message")
+        resp, _ := client.Logical().Read("secret/message")
         log.Printf("The secret message is '%s'", resp.Data["value"].(string))
     }
 
     func main() {
-        lambda.Start(LambdaHandler)
+        lambda.Start(MyLambdaHandler)
     }
 
 
@@ -96,7 +89,7 @@ All configuration is done with environment variables:
 * `VAULT_AUTH_ROLE` (Required) The name of the Vault role to authenticate to, eg `my-vault-role` in the example above.
 * `VAULT_AUTH_HEADER` (Optional, but recommended) The value of the `X-Vault-AWS-IAM-Server-ID` HTTP header to be included in the signed STS request this code uses to authenticate. This value is often set to the URL or DNS name of the Vault server to prevent potential replay attacks.
 
-That should be all that's required to get up and running.
+That should be all that is required to get up and running.
 
 ## License
 
