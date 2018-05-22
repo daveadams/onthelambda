@@ -70,10 +70,12 @@ be specifying to Vault in the next step will be:
     arn:aws:iam::987654321098:role/MyLambdaRole
 
 Now it's time to create the Vault authentication role. It can be named anything
-you wish. In this case, we'll call it `my-vault-role`:
+you wish. In this case, we'll call it `my-vault-role` and make it periodic since
+`onthelambda` will handle renewal automatically:
 
     $ vault write auth/lambda/role/my-vault-role \
           auth_type=iam \
+          period=14400 \
           policies=list-of,vault-policies,separated-by-commas \
           resolve_aws_unique_ids=false \
           bound_iam_principal_arn=arn:aws:iam::987654321098:role/MyLambdaRole
