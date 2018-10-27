@@ -51,7 +51,7 @@ You will also need to set the `iam_server_id_header_value` if you wish to use
 the extra layer of security (as described below):
 
     $ vault write auth/lambda/config/client \
-          iam_server_id_header_value=vault.insops.net
+          iam_server_id_header_value=vault.example.com
 
 Next, you'll need to establish whatever Vault policies your Lambda will need.
 See the [Vault Policies](https://www.vaultproject.io/docs/concepts/policies.html)
